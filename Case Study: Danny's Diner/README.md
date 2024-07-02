@@ -27,6 +27,8 @@ ORDER BY sales.customer_id ASC;
 - Customer B spent $74.
 - Customer C spent $36.
 
+***
+
 **2. How many days has each customer visited the restaurant?**
 
 ````sql
@@ -49,6 +51,8 @@ GROUP by customer_id;
 - Customer A visited 4 times.
 - Customer B visited 6 times.
 - Customer C visited 2 times.
+
+***
 
 **3. What was the first item from the menu purchased by each customer?**
 
@@ -87,6 +91,8 @@ GROUP BY customer_id, product_name;
 - Customer B's first order is curry.
 - Customer C's first order is ramen.
 
+***
+
 **4. What is the most purchased item on the menu and how many times was it purchased by all customers?**
 
 ````sql
@@ -107,6 +113,8 @@ LIMIT 1;
 | most_purchased | product_name | 
 | ----------- | ----------- |
 | 8       | ramen |
+
+***
 
 **5. Which item was the most popular for each customer?**
 
@@ -147,6 +155,8 @@ WHERE rank = 1;
 - Customer A and C's favourite item is ramen.
 - Customer B enjoys curry and ramen equally.
 
+***
+
 **6. Which item was purchased first by the customer after they became a member?**
 
 ````sql
@@ -183,6 +193,8 @@ ORDER BY customer_id ASC;
 
 - Customer A's first order as a member is ramen.
 - Customer B's first order as a member is sushi.
+
+***
 
 **7. Which item was purchased just before the customer became a member?**
 
@@ -221,5 +233,6 @@ ORDER BY rs.customer_id ASC;
 
 - Both customers' last order before becoming members is sushi.
 
+***
 
 
