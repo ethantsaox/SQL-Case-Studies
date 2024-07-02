@@ -1,7 +1,7 @@
 # Case Study: Danny's Diner 
 <img src="https://user-images.githubusercontent.com/81607668/127727503-9d9e7a25-93cb-4f95-8bd0-20b87cb4b459.png" alt="Image" width="500" height="520">
 
-**1. What is the total amount each customer spent at the restaurant?
+**1. What is the total amount each customer spent at the restaurant?**
 
 ````sql
 SELECT 
@@ -27,7 +27,7 @@ ORDER BY sales.customer_id ASC;
 - Customer B spent $74.
 - Customer C spent $36.
 
-**2. How many days has each customer visited the restaurant?
+**2. How many days has each customer visited the restaurant?**
 
 ````sql
 SELECT
@@ -50,7 +50,7 @@ GROUP by customer_id;
 - Customer B visited 6 times.
 - Customer C visited 2 times.
 
-**3. What was the first item from the menu purchased by each customer?
+**3. What was the first item from the menu purchased by each customer?**
 
 ````sql
 WITH ordered_sales AS (
@@ -87,7 +87,7 @@ GROUP BY customer_id, product_name;
 - Customer B's first order is curry.
 - Customer C's first order is ramen.
 
-**4. What is the most purchased item on the menu and how many times was it purchased by all customers?
+**4. What is the most purchased item on the menu and how many times was it purchased by all customers?**
 
 ````sql
 SELECT
@@ -108,7 +108,7 @@ LIMIT 1;
 | ----------- | ----------- |
 | 8       | ramen |
 
-**5. Which item was the most popular for each customer?
+**5. Which item was the most popular for each customer?**
 
 ````sql
 WITH most_popular_item AS (
@@ -147,7 +147,7 @@ WHERE rank = 1;
 - Customer A and C's favourite item is ramen.
 - Customer B enjoys curry and ramen equally.
 
-**6. Which item was purchased first by the customer after they became a member?
+**6. Which item was purchased first by the customer after they became a member?**
 
 ````sql
 WITH joined_as_member AS (
@@ -184,7 +184,7 @@ ORDER BY customer_id ASC;
 - Customer A's first order as a member is ramen.
 - Customer B's first order as a member is sushi.
 
-**7. Which item was purchased just before the customer became a member?
+**7. Which item was purchased just before the customer became a member?**
 
 ````sql
 WITH ranked_sales AS (
