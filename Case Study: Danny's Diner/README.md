@@ -3,7 +3,21 @@
 
 ***
 
-**Schema:**
+## Problem Statement
+
+Danny wants to analyze his customer data to understand their visiting patterns, spending habits, and favorite menu items. These insights will help him personalize the customer experience and decide whether to expand the customer loyalty program. He also needs to generate basic datasets for his team to inspect without using SQL.
+
+Danny has provided three key datasets: sales, menu, and members, along with a sample of his customer data to write SQL queries and answer his questions.
+
+***
+
+## Entity Relationship Diagram
+
+![image](https://user-images.githubusercontent.com/81607668/127271130-dca9aedd-4ca9-4ed8-b6ec-1e1920dca4a8.png)
+
+***
+
+## Schema
 
 CREATE SCHEMA dannys_diner;
 SET search_path = dannys_diner;
