@@ -17,6 +17,12 @@ Danny has provided three key datasets: sales, menu, and members, along with a sa
 
 ***
 
+## Objective
+
+The objective of this project is to enhance my PostgreSQL skills by analyzing customer data from Danny's Diner. Through this project, I aim to answer specific questions about customer visiting patterns, spending behavior, and menu preferences using SQL queries. This analysis will help Danny deliver a better and more personalized experience for his loyal customers and make informed decisions about expanding the customer loyalty program.
+
+***
+
 ## Schema
 
 CREATE SCHEMA dannys_diner;
