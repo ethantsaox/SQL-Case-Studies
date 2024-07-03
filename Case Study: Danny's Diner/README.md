@@ -146,7 +146,7 @@ GROUP BY customer_id, product_name;
 ````
 #### Steps:
 
-- Create a CTE named ordered_sales that:
+- Create a CTE named `ordered_sales` that:
 - Selects the `customer_id`, `order_date`, and `product_name`.
 - Joins the `dannys_diner.sales` and `dannys_diner.menu` tables on the `product_id` column.
 - Uses the **DENSE_RANK()** window function to rank each `customer_id` partition based on the `order_date` in ascending order.
@@ -224,7 +224,7 @@ WHERE rank = 1;
 
 #### Steps:
 
-- Create a CTE named most_popular_item that:
+- Create a CTE named `most_popular_item` that:
 - Selects the `customer_id`, `product_name`, and calculates the count of product_id occurrences for each group.
 - Joins the `dannys_diner.menu` and `dannys_diner.sales` tables on the `product_id` column.
 - Groups the results by `customer_id` and `product_name`.
@@ -274,7 +274,7 @@ ORDER BY customer_id ASC;
 
 #### Steps:
 
-- Create a CTE named joined_as_member that:
+- Create a CTE named `joined_as_member` that:
 - Selects the appropriate columns and calculates the row number using **ROW_NUMBER()**. The **PARTITION BY** clause divides the data by `members.customer_id`, and the **ORDER BY** clause orders the rows within each `members.customer_id` partition by `sales.order_date`.
 - Joins the `dannys_diner.members` and `dannys_diner.sales` tables on the `customer_id` column, including only sales that occurred after the member's join date (`sales.order_date` > `members.join_date`).
 - In the outer query: Joins the `joined_as_member` CTE with the `dannys_diner.menu` table on the `product_id` column.
@@ -321,7 +321,7 @@ ORDER BY rs.customer_id ASC;
 
 #### Steps:
 
-- Create a CTE named ranked_sales that:
+- Create a CTE named `ranked_sales` that:
 - Selects the appropriate columns and calculates the row number using **ROW_NUMBER()**. The **PARTITION** BY clause divides the data by `sales.customer_id`, and the ORDER BY clause orders the rows within each `sales.customer_id` partition by `sales.order_date` in descending order.
 - Joins the `dannys_diner.sales` and `dannys_diner.members` tables on the `customer_id` column, including only sales that occurred before the member's join date (`sales.order_date` < `members.join_date`).
 - In the outer query: Joins the ranked_sales CTE with the `dannys_diner.menu` table on the `product_id` column.
@@ -366,7 +366,7 @@ ORDER BY sales_before_membership.customer_id ASC;
 
 #### Steps:
 
-- Create a CTE named sales_before_membership that:
+- Create a CTE named `sales_before_membership` that:
 - Selects the appropriate columns, including `customer_id`,`product_id`, `order_date`, and `price`.
 - Joins the `dannys_diner.sales` and `dannys_diner.members` tables on the `customer_id` column.
 - Joins the `dannys_diner.sales` and `dannys_diner.menu` tables on the `product_id` column.
@@ -414,13 +414,13 @@ ORDER BY sales_as_points.customer_id ASC;
 
 #### Steps:
 
-- Create a CTE named sales_as_points that:
+- Create a CTE named `sales_as_points` that:
 - Selects the appropriate columns, including `customer_id`, `product_id`, `product_name`, and `price`.
 - Joins the `dannys_diner.sales` and `dannys_diner.menu` tables on the `product_id` column.
 - Uses a CASE statement to calculate points:
 - Multiplies the price by 20 for sushi (2x multiplier).
 - Multiplies the price by 10 for all other products.
-- In the outer query: Groups the results by customer_id and sums the total points for each customer.
+- In the outer query: Groups the results by `customer_id` and sums the total points for each customer.
 - Orders the result by `customer_id` in ascending order.
 
 #### Answer:
@@ -472,7 +472,7 @@ ORDER BY sales_as_points.customer_id ASC;
 
 #### Steps:
 
-- Create a CTE named sales_as_points that:
+- Create a CTE named `sales_as_points` that:
 - Selects the appropriate columns, including `customer_id`, `product_id`, `order_date`, `product_name`, `price`, and `join_date`.
 - Joins the `dannys_diner.sales` and `dannys_diner.menu` tables on the `product_id` column.
 - Joins the `dannys_diner.sales` and `dannys_diner.members` tables on the `customer_id` column.
