@@ -370,7 +370,7 @@ ORDER BY sales_before_membership.customer_id ASC;
 - Selects the appropriate columns, including `customer_id`,`product_id`, `order_date`, and `price`.
 - Joins the `dannys_diner.sales` and `dannys_diner.members` tables on the `customer_id` column.
 - Joins the `dannys_diner.sales` and `dannys_diner.menu` tables on the `product_id` column.
-- Applies a condition to include only sales that occurred before the member's join date (s`ales.order_date` < `members.join_date`).
+- Applies a condition to include only sales that occurred before the member's join date (`sales.order_date` < `members.join_date`).
 - In the outer query: Groups the results by `customer_id` and calculates the total number of items and the total amount spent before membership for each customer.
 - Orders the result by `customer_id` in ascending order.
 
