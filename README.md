@@ -1,2 +1,2 @@
-# 8-Week-SQL-Challenge
+# SQL Case Studies
 Case Studies related to SQL using DBFiddle
