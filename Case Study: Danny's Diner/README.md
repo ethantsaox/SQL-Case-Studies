@@ -452,9 +452,9 @@ ORDER BY sales_as_points.customer_id ASC;
 | B           | 940 |
 | C           | 360 |
 
-- Total points for Customer A is $860.
-- Total points for Customer B is $940.
-- Total points for Customer C is $360.
+- Total points for Customer A is 860.
+- Total points for Customer B is 940.
+- Total points for Customer C is 360.
 
 ***
 
