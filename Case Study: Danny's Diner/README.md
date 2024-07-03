@@ -76,6 +76,10 @@ ORDER BY sales.customer_id ASC;
 
 #### Steps:
 
+- Join the 'sales' table with the menu table to get the price of each product.
+- Group by 'customer_id' and calculate the total amount spent by each customer.
+- Sum the prices for each customer.
+
 #### Answer:
 | customer_id | total_sales |
 | ----------- | ----------- |
@@ -100,6 +104,9 @@ GROUP by customer_id;
 ````
 
 #### Steps:
+
+- Count distinct 'order_date' for each `customer_id`.
+- Group by `customer_id` to get the number of days each customer visited.
 
 #### Answer:
 | customer_id | visit_count |
@@ -139,6 +146,11 @@ GROUP BY customer_id, product_name;
 ````
 #### Steps:
 
+- Create a CTE named `ordered_sales_cte`. Rank orders by order_date for each customer using **DENSE_RANK()** window function.
+- Use the **PARTITION BY** clause to divide the data by `customer_id`, **ORDER BY** clause orders the rows within each partition by `order_date`.
+- Filter to get the first order for each customer.
+- Join with the menu table to get the product name.
+
 #### Answer:
 | customer_id | product_name | 
 | ----------- | ----------- |
@@ -168,6 +180,9 @@ LIMIT 1;
 ````
 
 #### Steps:
+
+- Use the **COUNT** function on the `product_id` column and use `ORDER BY` to sort the result in descending order using`most_purchased`.
+- Apply the **LIMIT** 1 clause to acquire the most purchased items.
 
 #### Answer:
 | most_purchased | product_name | 
@@ -202,6 +217,12 @@ WHERE rank = 1;
 ````
 
 #### Steps:
+
+- Create a CTE named fav_item_cte that joins the menu and sales tables using the `product_id` column. Within the CTE:
+- Group the results by `sales.customer_id` and `menu.product_name`, and count the occurrences of `menu.product_id` for each group.
+- Use the **DENSE_RANK()** window function to rank each `sales.customer_id` partition based on the count of orders **COUNT**`(sales.customer_id)` in descending order.
+In the outer query:
+- Select the appropriate columns and filter the results to include only the rows where the rank equals 1, representing the most frequently ordered item for each customer.
 
 #### Answer:
 | customer_id | product_name | order_count |
