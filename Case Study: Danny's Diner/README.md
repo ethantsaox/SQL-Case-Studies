@@ -215,6 +215,8 @@ LIMIT 1;
 | ----------- | ----------- |
 | 8       | ramen |
 
+- The most purchased menu item is Ramen, with 8 orders.
+
 ***
 
 **5. Which item was the most popular for each customer?**
