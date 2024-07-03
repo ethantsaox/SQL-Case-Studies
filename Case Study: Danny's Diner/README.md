@@ -232,12 +232,6 @@ WHERE rank = 1;
 - In the outer query: Selects the `customer_id`, `product_name`, and `order_count`.
 - Filters the results to include only the rows where the rank equals 1, representing the most frequently ordered item for each customer.
 
-
-
-
-
-
-
 #### Answer:
 | customer_id | product_name | order_count |
 | ----------- | ---------- |------------  |
@@ -280,8 +274,8 @@ ORDER BY customer_id ASC;
 
 #### Steps:
 
--Create a CTE named joined_as_member that:
--Selects the appropriate columns and calculates the row number using **ROW_NUMBER()**. The **PARTITION BY** clause divides the data by `members.customer_id`, and the **ORDER BY** clause orders the rows within each `members.customer_id` partition by `sales.order_date`.
+- Create a CTE named joined_as_member that:
+- Selects the appropriate columns and calculates the row number using **ROW_NUMBER()**. The **PARTITION BY** clause divides the data by `members.customer_id`, and the **ORDER BY** clause orders the rows within each `members.customer_id` partition by `sales.order_date`.
 - Joins the `dannys_diner.members` and `dannys_diner.sales` tables on the `customer_id` column, including only sales that occurred after the member's join date (`sales.order_date` > `members.join_date`).
 - In the outer query: Joins the `joined_as_member` CTE with the `dannys_diner.menu` table on the `product_id` column.
 - Filters to retrieve only the rows where row_num equals 1, representing the first row within each `customer_id` partition.
