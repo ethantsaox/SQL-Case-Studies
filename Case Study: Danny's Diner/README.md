@@ -94,7 +94,7 @@ GROUP BY sales.customer_id
 ORDER BY sales.customer_id ASC;
 ````
 
-#### Steps:
+#### Explanation:
 
 - Join the `sales` table with the menu table to get the price of each product.
 - Group by `customer_id` and calculate the total amount spent by each customer.
@@ -122,7 +122,7 @@ FROM dannys_diner.sales
 GROUP by customer_id;
 ````
 
-#### Steps:
+#### Explanation:
 
 - Select the `customer_id from` the sales table.
 - Count distinct `order_date` for each `customer_id`.
@@ -164,7 +164,7 @@ FROM ordered_sales
 WHERE rank = 1
 GROUP BY customer_id, product_name;
 ````
-#### Steps:
+#### Explanation:
 
 - Create a CTE named `ordered_sales` that:
 - Selects the `customer_id`, `order_date`, and `product_name`.
@@ -202,7 +202,7 @@ ORDER BY amount_purchased DESC
 LIMIT 1;
 ````
 
-#### Steps:
+#### Explanation:
 
 - Join the sales and menu tables using the `product_id` column.
 - Group the results by `menu.product_name`.
@@ -244,7 +244,7 @@ FROM most_popular_item
 WHERE rank = 1;
 ````
 
-#### Steps:
+#### Explanation:
 
 - Create a CTE named `most_popular_item` that:
 - Selects the `customer_id`, `product_name`, and calculates the count of product_id occurrences for each group.
@@ -294,7 +294,7 @@ WHERE rank = 1
 ORDER BY customer_id ASC;
 ````
 
-#### Steps:
+#### Explanation:
 
 - Create a CTE named `joined_as_member` that:
 - Selects the appropriate columns and calculates the row number using **ROW_NUMBER()**. The **PARTITION BY** clause divides the data by `members.customer_id`, and the **ORDER BY** clause orders the rows within each `members.customer_id` partition by `sales.order_date`.
@@ -341,7 +341,7 @@ WHERE rs.row_num = 1
 ORDER BY rs.customer_id ASC;
 ````
 
-#### Steps:
+#### Explanation:
 
 - Create a CTE named `ranked_sales` that:
 - Selects the appropriate columns and calculates the row number using **ROW_NUMBER()**. The **PARTITION** BY clause divides the data by `sales.customer_id`, and the ORDER BY clause orders the rows within each `sales.customer_id` partition by `sales.order_date` in descending order.
@@ -386,7 +386,7 @@ GROUP BY sales_before_membership.customer_id
 ORDER BY sales_before_membership.customer_id ASC;
 ````
 
-#### Steps:
+#### Explanation:
 
 - Create a CTE named `sales_before_membership` that:
 - Selects the appropriate columns, including `customer_id`,`product_id`, `order_date`, and `price`.
@@ -434,7 +434,7 @@ GROUP BY sales_as_points.customer_id
 ORDER BY sales_as_points.customer_id ASC;
 ````
 
-#### Steps:
+#### Explanation:
 
 - Create a CTE named `sales_as_points` that:
 - Selects the appropriate columns, including `customer_id`, `product_id`, `product_name`, and `price`.
@@ -492,7 +492,7 @@ GROUP BY sales_as_points.customer_id
 ORDER BY sales_as_points.customer_id ASC;
 ````
 
-#### Steps:
+#### Explanation:
 
 - Create a CTE named `sales_as_points` that:
 - Selects the appropriate columns, including `customer_id`, `product_id`, `order_date`, `product_name`, `price`, and `join_date`.
