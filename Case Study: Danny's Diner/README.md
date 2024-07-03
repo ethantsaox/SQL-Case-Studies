@@ -76,10 +76,9 @@ ORDER BY sales.customer_id ASC;
 
 #### Steps:
 
-- Join the 'sales' table with the menu table to get the price of each product.
-- Group by 'customer_id' and calculate the total amount spent by each customer.
-- Sum the prices for each customer.
-
+- Join the `sales` table with the menu table to get the price of each product.
+- Group by `customer_id` and calculate the total amount spent by each customer.
+- Order the results by `customer_id` in ascending order.
 #### Answer:
 | customer_id | total_sales |
 | ----------- | ----------- |
@@ -105,7 +104,8 @@ GROUP by customer_id;
 
 #### Steps:
 
-- Count distinct 'order_date' for each `customer_id`.
+- Select the `customer_id from` the sales table.
+- Count distinct `order_date` for each `customer_id`.
 - Group by `customer_id` to get the number of days each customer visited.
 
 #### Answer:
@@ -146,10 +146,13 @@ GROUP BY customer_id, product_name;
 ````
 #### Steps:
 
-- Create a CTE named `ordered_sales_cte`. Rank orders by order_date for each customer using **DENSE_RANK()** window function.
-- Use the **PARTITION BY** clause to divide the data by `customer_id`, **ORDER BY** clause orders the rows within each partition by `order_date`.
-- Filter to get the first order for each customer.
-- Join with the menu table to get the product name.
+- Create a CTE named ordered_sales that:
+- Selects the `customer_id`, `order_date`, and `product_name`.
+- Joins the `dannys_diner.sales` and `dannys_diner.menu` tables on the `product_id` column.
+- Uses the **DENSE_RANK()** window function to rank each `customer_id` partition based on the `order_date` in ascending order.
+- In the outer query: Selects the `customer_id` and `product_name`.
+- Filters the results to include only the rows where the rank equals 1, representing the first item purchased by each customer.
+- Groups the results by `customer_id` and `product_name`.
 
 #### Answer:
 | customer_id | product_name | 
@@ -181,8 +184,11 @@ LIMIT 1;
 
 #### Steps:
 
-- Use the **COUNT** function on the `product_id` column and use `ORDER BY` to sort the result in descending order using`most_purchased`.
-- Apply the **LIMIT** 1 clause to acquire the most purchased items.
+- Join the sales and menu tables using the `product_id` column.
+- Group the results by `menu.product_name`.
+- Count the occurrences of each product using **COUNT**(`sales.product_id`) and alias it as `amount_purchased`.
+- Order the results by `amount_purchased` in descending order.
+- Limit the results to the top one row using **LIMIT 1**.
 
 #### Answer:
 | most_purchased | product_name | 
@@ -218,11 +224,19 @@ WHERE rank = 1;
 
 #### Steps:
 
-- Create a CTE named fav_item_cte that joins the menu and sales tables using the `product_id` column. Within the CTE:
-- Group the results by `sales.customer_id` and `menu.product_name`, and count the occurrences of `menu.product_id` for each group.
-- Use the **DENSE_RANK()** window function to rank each `sales.customer_id` partition based on the count of orders **COUNT**`(sales.customer_id)` in descending order.
-In the outer query:
-- Select the appropriate columns and filter the results to include only the rows where the rank equals 1, representing the most frequently ordered item for each customer.
+- Create a CTE named most_popular_item that:
+- Selects the `customer_id`, `product_name`, and calculates the count of product_id occurrences for each group.
+- Joins the `dannys_diner.menu` and `dannys_diner.sales` tables on the `product_id` column.
+- Groups the results by `customer_id` and `product_name`.
+- Uses the **DENSE_RANK()** window function to rank each `customer_id` partition based on the count of orders **COUNT**(`sales.customer_id`) in descending order.
+- In the outer query: Selects the `customer_id`, `product_name`, and `order_count`.
+- Filters the results to include only the rows where the rank equals 1, representing the most frequently ordered item for each customer.
+
+
+
+
+
+
 
 #### Answer:
 | customer_id | product_name | order_count |
@@ -266,6 +280,13 @@ ORDER BY customer_id ASC;
 
 #### Steps:
 
+-Create a CTE named joined_as_member that:
+-Selects the appropriate columns and calculates the row number using **ROW_NUMBER()**. The **PARTITION BY** clause divides the data by `members.customer_id`, and the **ORDER BY** clause orders the rows within each `members.customer_id` partition by `sales.order_date`.
+- Joins the `dannys_diner.members` and `dannys_diner.sales` tables on the `customer_id` column, including only sales that occurred after the member's join date (`sales.order_date` > `members.join_date`).
+- In the outer query: Joins the `joined_as_member` CTE with the `dannys_diner.menu` table on the `product_id` column.
+- Filters to retrieve only the rows where row_num equals 1, representing the first row within each `customer_id` partition.
+- Orders the result by `customer_id` in ascending order.
+
 #### Answer:
 | customer_id | product_name |
 | ----------- | ---------- |
@@ -306,6 +327,13 @@ ORDER BY rs.customer_id ASC;
 
 #### Steps:
 
+- Create a CTE named ranked_sales that:
+- Selects the appropriate columns and calculates the row number using **ROW_NUMBER()**. The **PARTITION** BY clause divides the data by `sales.customer_id`, and the ORDER BY clause orders the rows within each `sales.customer_id` partition by `sales.order_date` in descending order.
+- Joins the `dannys_diner.sales` and `dannys_diner.members` tables on the `customer_id` column, including only sales that occurred before the member's join date (`sales.order_date` < `members.join_date`).
+- In the outer query: Joins the ranked_sales CTE with the `dannys_diner.menu` table on the `product_id` column.
+- Filters to retrieve only the rows where row_num equals 1, representing the most recent sale before the join date within each `customer_id` partition.
+- Orders the result by `customer_id` in ascending order.
+
 #### Answer:
 | customer_id | product_name |
 | ----------- | ---------- |
@@ -343,6 +371,14 @@ ORDER BY sales_before_membership.customer_id ASC;
 ````
 
 #### Steps:
+
+- Create a CTE named sales_before_membership that:
+- Selects the appropriate columns, including `customer_id`,`product_id`, `order_date`, and `price`.
+- Joins the `dannys_diner.sales` and `dannys_diner.members` tables on the `customer_id` column.
+- Joins the `dannys_diner.sales` and `dannys_diner.menu` tables on the `product_id` column.
+- Applies a condition to include only sales that occurred before the member's join date (s`ales.order_date` < `members.join_date`).
+- In the outer query: Groups the results by `customer_id` and calculates the total number of items and the total amount spent before membership for each customer.
+- Orders the result by `customer_id` in ascending order.
 
 #### Answer:
 | customer_id | total_items | total_sales |
@@ -383,6 +419,15 @@ ORDER BY sales_as_points.customer_id ASC;
 ````
 
 #### Steps:
+
+- Create a CTE named sales_as_points that:
+- Selects the appropriate columns, including `customer_id`, `product_id`, `product_name`, and `price`.
+- Joins the `dannys_diner.sales` and `dannys_diner.menu` tables on the `product_id` column.
+- Uses a CASE statement to calculate points:
+- Multiplies the price by 20 for sushi (2x multiplier).
+- Multiplies the price by 10 for all other products.
+- In the outer query: Groups the results by customer_id and sums the total points for each customer.
+- Orders the result by `customer_id` in ascending order.
 
 #### Answer:
 | customer_id | total_points | 
@@ -432,6 +477,18 @@ ORDER BY sales_as_points.customer_id ASC;
 ````
 
 #### Steps:
+
+- Create a CTE named sales_as_points that:
+- Selects the appropriate columns, including `customer_id`, `product_id`, `order_date`, `product_name`, `price`, and `join_date`.
+- Joins the `dannys_diner.sales` and `dannys_diner.menu` tables on the `product_id` column.
+- Joins the `dannys_diner.sales` and `dannys_diner.members` tables on the `customer_id` column.
+- Uses a CASE statement to calculate points:
+- Applies a 2x points multiplier (price * 2 * 10) for orders within the first week after joining (from `join_date` to `join_date` + **INTERVAL** '6 days').
+- Applies a 2x points multiplier for sushi (price * 2 * 10) outside the first week.
+- Applies the standard points multiplier (price * 10) for all other cases.
+- In the outer query: Filters the results to include only sales up to January 31, 2021, and only for customers A and B.
+- Groups the results by `customer_id` and sums the total points for each customer.
+- Orders the result by `customer_id` in ascending order.
 
 #### Answer:
 | customer_id | total_points | 
