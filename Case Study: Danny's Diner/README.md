@@ -1,13 +1,13 @@
-# Case Study: Danny's Diner 
+# Restaurant Data Analysis
 <img src="https://user-images.githubusercontent.com/81607668/127727503-9d9e7a25-93cb-4f95-8bd0-20b87cb4b459.png" alt="Image" width="500" height="520">
 
 ***
 
 ## Problem Statement
 
-Danny wants to analyze his customer data to understand their visiting patterns, spending habits, and favorite menu items. These insights will help him personalize the customer experience and decide whether to expand the customer loyalty program. He also needs to generate basic datasets for his team to inspect without using SQL.
+A restaurant owner in my area wants to analyze his customer data to understand their visiting patterns, spending habits, and favorite menu items. These insights will help him personalize the customer experience and decide whether to expand the customer loyalty program. He also needs to generate basic datasets for his team to inspect without using SQL.
 
-Danny has provided three key datasets: sales, menu, and members, along with a sample of his customer data to write SQL queries and answer his questions.
+He has provided three key datasets: sales, menu, and members, along with a sample of his customer data to write SQL queries and answer his questions.
 
 ***
 
@@ -19,7 +19,7 @@ Danny has provided three key datasets: sales, menu, and members, along with a sa
 
 ## Objective
 
-The objective of this project is to enhance my PostgreSQL skills by analyzing customer data from Danny's Diner. Through this project, I aim to answer specific questions about customer visiting patterns, spending behavior, and menu preferences using SQL queries. This analysis will help Danny deliver a better and more personalized experience for his loyal customers and make informed decisions about expanding the customer loyalty program.
+The objective of this project is to enhance my PostgreSQL skills by analyzing customer data. Through this project, I aim to answer specific questions about customer visiting patterns, spending behavior, and menu preferences using SQL queries. This analysis will help Danny deliver a better and more personalized experience for his loyal customers and make informed decisions about expanding the customer loyalty program.
 
 ***
 
