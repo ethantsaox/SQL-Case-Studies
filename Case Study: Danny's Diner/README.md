@@ -4,7 +4,7 @@
 
 ## Problem Statement
 
-A restaurant owner in my area wants to analyze his customer data to understand their visiting patterns, spending habits, and favorite menu items. These insights will help him personalize the customer experience and decide whether to expand the customer loyalty program. He also needs to generate basic datasets for his team to inspect without using SQL.
+A restaurant owner wants to analyze his customer data to understand their visiting patterns, spending habits, and favorite menu items. These insights will help him personalize the customer experience and decide whether to expand the customer loyalty program. He also needs to generate basic datasets for his team to inspect without using SQL.
 
 He has provided three key datasets: sales, menu, and members, along with a sample of his customer data to write SQL queries and answer his questions.
 
