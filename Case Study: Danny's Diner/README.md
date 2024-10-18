@@ -22,10 +22,7 @@ The objective of this project is to enhance my PostgreSQL skills by analyzing cu
 
 ***
 
-## Schema
-
-CREATE SCHEMA dannys_diner;
-SET search_path = dannys_diner;
+## Input
 
 CREATE TABLE sales (
   "customer_id" VARCHAR(1),
