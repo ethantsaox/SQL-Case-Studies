@@ -22,7 +22,7 @@ The objective of this project is to enhance my PostgreSQL skills by analyzing cu
 
 ***
 
-## Input
+## Data
 
 CREATE TABLE sales (
   "customer_id" VARCHAR(1),
